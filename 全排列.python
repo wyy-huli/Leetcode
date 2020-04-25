@@ -1,0 +1,27 @@
+# Leetcode
+Leetcode-Python-Soultion
+import itertools
+def permute(nums):
+    return list(itertools.permutations(nums))#返回可迭代对象的所有数学全排列方式。
+def Huisupermute(nums):#回溯方法的全排列
+    def dfs(nums, size, depth, path, used, res):
+        if depth == size:
+            res.append(path[:])
+            return
+        for i in range(size):
+            if not used[i]:
+                used[i] = True
+                path.append(nums[i])
+
+                dfs(nums, size, depth + 1, path, used, res)
+
+                used[i] = False
+                path.pop()
+
+    size = len(nums)
+    if len(nums) == 0:
+        return []
+    used = [False for _ in range(size)]
+    res = []
+    dfs(nums, size, 0, [], used, res)
+    return res
