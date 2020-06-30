@@ -1,0 +1,18 @@
+import queue
+def levelOrderBottom(root):
+    ans =[]
+    if root == None:return ans
+    h = queue.Queue()
+    h.put(root)
+    while h.empty() != True:
+        tmp =[]
+        l = h.qsize()
+        for i in range(l):
+            node = h.get()
+            tmp.append(node.val)
+            if node.left != None:
+                h.put(node.left)
+            if node.right != None:
+                h.put(node.right)
+        ans.insert(0,tmp)
+    return ans
